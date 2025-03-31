@@ -1,6 +1,7 @@
 import telnetlib # type: ignore
 from ftplib import FTP
 import time
+import os
 
 CAMERA_IP = "192.168.100.47"
 USERNAME = 'admin'
@@ -35,7 +36,7 @@ def capture_image_via_telnet(filename):
         ftp.retrbinary("RETR " + filename, lf.write)
         lf.close()
 
-        return "1"
+        return ""
 
     except Exception as e:
         return f"Error: {str(e)}"
@@ -43,4 +44,6 @@ def capture_image_via_telnet(filename):
 
 def capture_image_via_telnet_dummy(filename):
     """Simulates capturing an image (dummy version)."""
-    return filename
+    print("Function called")
+    return ""
+

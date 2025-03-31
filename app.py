@@ -1,9 +1,9 @@
-from flask import Flask, jsonify, request # type: ignore
+from flask import Flask, jsonify, request 
 from Camera.cognex_telnet import capture_image_via_telnet_dummy, capture_image_via_telnet
 
 app = Flask(__name__)
 
-# 1 Capture an image using Cognex Telnet
+# Capture an image using Cognex Telnet
 @app.route('/capture', methods=['GET'])
 def capture():
     filename = request.args.get("filename")  # Get filename from query parameter
@@ -27,7 +27,8 @@ def capture_dummy():
         return jsonify({"error": "Filename parameter is required"}), 400
     
     result = capture_image_via_telnet_dummy(filename)
-    return jsonify({"result": result}), 200
+    return result
+
 
 @app.route('/health', methods=['GET'])
 def health_check():
